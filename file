@@ -1,0 +1,65 @@
+
+def write_data_to_file(filename, list_of_strings):
+
+  '''parameters are filename and list of strings.'''
+
+  with open(filename, 'a') as myfile:
+    for line in list_of_strings:
+      myfile.write(str(line) + '\n')
+
+
+
+
+def read_data_from_file(filename):
+
+  '''
+  parameter is filename. return value is contents of data.txt in form of list of strings.'''
+
+  with open(filename, 'r') as mycontents:
+    lists = []
+    for line in mycontents:
+      line = line.strip()
+      lists.append(line)
+    return lists
+
+
+
+
+#################################
+
+name_list = read_data_from_file('data.txt')
+
+new_name = input('Enter a name to look up (blank to skip): ')
+
+if new_name == '':
+  pass
+
+elif new_name in name_list:
+  print('Found!')
+
+else:
+  print('Not found.')
+
+################
+
+name_add = input('Enter a name to add to the end (blank to skip): ')
+
+if name_add == '':
+  pass
+
+else:
+  name_list.append(name_add)
+
+#################
+  
+name_remove = input('Enter a name to remove (blank to skip): ')
+
+if name_remove == '' or name_remove not in name_list:
+  pass
+
+else:
+  name_list.remove(name_remove)
+
+##################
+
+write_data_to_file('data.txt', name_list)
